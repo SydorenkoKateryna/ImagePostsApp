@@ -15,7 +15,7 @@ import {
 import Input from "../components/Input";
 import Button from "../components/Button";
 import InputButton from "../components/InputButton";
-import { useKeyboardVisible } from "../hooks/Keyboard ";
+import { useKeyboardVisible } from "../hooks/Keyboard";
 
 const LoginScreen = () => {
   const {

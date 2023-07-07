@@ -44,8 +44,8 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     fontFamily: "Roboto_400Regular",
     color: "#212121",
-    borderColor: "#BDBDBD",
-    backgroundColor: "#E8E8E8",
+    borderColor: "#E8E8E8",
+    backgroundColor: "#F6F6F6",
   },
   lastInput: {
     marginBottom: 0,

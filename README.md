@@ -6,5 +6,5 @@
 <a href="https://monosnap.com/file/xpSY7600Tr3FORCv79MYv2W5FOLi4g">Запуск проекту на емуляторі Android</a>
 
 ## goit-react-native-hw-2
-
-<a href="https://monosnap.com/file/C1pNJfL1KKL2e2j9QcVC9js4kSkHVj">Розмітка та стилізація екрану LoginScreen</a>
+<a href="https://monosnap.com/file/WccofUnoSlefbBj8u08mEV0qAtaoz9">Розмітка та стилізація екрану RegistrationScreen</a><br>
+<a href="https://monosnap.com/file/OxdtipShVcSVf0oEHrrlJ804ikqkQl">Розмітка та стилізація екрану LoginScreen</a>
