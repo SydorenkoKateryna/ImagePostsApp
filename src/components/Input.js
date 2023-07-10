@@ -9,6 +9,8 @@ const Input = ({
   secureTextEntry = false,
   onFocus,
   onBlur,
+  value,
+  onChangeText,
 }) => {
   const { input, lastInput } = styles;
   return (
@@ -31,6 +33,8 @@ const Input = ({
       secureTextEntry={secureTextEntry}
       onFocus={onFocus}
       onBlur={onBlur}
+      value={value}
+      onChangeText={onChangeText}
     />
   );
 };

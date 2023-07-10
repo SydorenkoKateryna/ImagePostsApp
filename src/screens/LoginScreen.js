@@ -33,9 +33,18 @@ const LoginScreen = () => {
     email: false,
     password: false,
   });
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const signIn = () => {
-    console.debug("Welcome!");
+    if (!email || !password) {
+      return console.warn("Будь ласка заповніть всі поля!");
+    }
+
+    console.log({ email, password });
+
+    setEmail("");
+    setPassword("");
   };
 
   const togglePasswordHide = () => {
@@ -84,6 +93,8 @@ const LoginScreen = () => {
                   autoComplete={"email"}
                   onFocus={() => handleFocus("email")}
                   onBlur={() => handleBlur("email")}
+                  value={email}
+                  onChangeText={setEmail}
                 />
               </View>
 
@@ -96,6 +107,8 @@ const LoginScreen = () => {
                   secureTextEntry={isPasswordHide}
                   onFocus={() => handleFocus("password")}
                   onBlur={() => handleBlur("password")}
+                  value={password}
+                  onChangeText={setPassword}
                 />
 
                 <InputButton

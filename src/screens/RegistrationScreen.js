@@ -19,6 +19,7 @@ import Button from "../components/Button";
 import InputButton from "../components/InputButton";
 import { useKeyboardVisible } from "../hooks/Keyboard";
 import { Feather } from "@expo/vector-icons";
+import * as DocumentPicker from "expo-document-picker";
 
 const RegistrationScreen = () => {
   const {
@@ -37,26 +38,42 @@ const RegistrationScreen = () => {
 
   const [isPasswordHide, setIsPasswordHide] = useState(true);
   const [isFocused, setIsFocused] = useState({
-    name: false,
+    login: false,
     email: false,
     password: false,
   });
+  const [login, setLogin] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [image, setImage] = useState(null);
 
-  ////////////////////////////////////--------->
-  //   temporarily for layout and styling
-  const [image, setImage] = useState(false);
+  const signIn = () => {
+    if (!login || !email || !password) {
+      return console.warn("Будь ласка заповніть всі поля!");
+    }
 
-  const handleAddImage = () => {
-    setImage(true);
+    console.log({ login, email, password, image });
+
+    setLogin("");
+    setEmail("");
+    setPassword("");
+    setImage(null);
+  };
+
+  const handleAddImage = async () => {
+    const uploadedImage = await DocumentPicker.getDocumentAsync({
+      type: "image/*",
+    });
+
+    if (uploadedImage.type === "cancel") {
+      return setImage(null);
+    }
+
+    setImage(uploadedImage);
   };
 
   const handleDeleteImage = () => {
-    setImage(false);
-  };
-  //<---------//////////////////////////////////
-
-  const signIn = () => {
-    console.debug("Welcome!");
+    setImage(null);
   };
 
   const togglePasswordHide = () => {
@@ -95,7 +112,7 @@ const RegistrationScreen = () => {
             ]}
           >
             <View style={imageWrapper}>
-              {image && <Image style={imageStyles} />}
+              {image && <Image style={imageStyles} source={image} />}
               {image ? (
                 <TouchableOpacity
                   style={[
@@ -119,11 +136,13 @@ const RegistrationScreen = () => {
                 <Text style={formTitle}>Реєстрація</Text>
                 <View>
                   <Input
-                    isFocusedInput={isFocused.name}
+                    isFocusedInput={isFocused.login}
                     placeholder={"Логін"}
-                    autoComplete={"name"}
-                    onFocus={() => handleFocus("name")}
-                    onBlur={() => handleBlur("name")}
+                    autoComplete={"username"}
+                    onFocus={() => handleFocus("login")}
+                    onBlur={() => handleBlur("login")}
+                    value={login}
+                    onChangeText={setLogin}
                   />
                 </View>
 
@@ -134,6 +153,8 @@ const RegistrationScreen = () => {
                     autoComplete={"email"}
                     onFocus={() => handleFocus("email")}
                     onBlur={() => handleBlur("email")}
+                    value={email}
+                    onChangeText={setEmail}
                   />
                 </View>
 
@@ -146,6 +167,8 @@ const RegistrationScreen = () => {
                     secureTextEntry={isPasswordHide}
                     onFocus={() => handleFocus("password")}
                     onBlur={() => handleBlur("password")}
+                    value={password}
+                    onChangeText={setPassword}
                   />
 
                   <InputButton
@@ -212,7 +235,6 @@ const styles = StyleSheet.create({
     width: 120,
     height: 120,
     borderRadius: 16,
-    backgroundColor: "#212121",
   },
   imageButton: {
     position: "absolute",
