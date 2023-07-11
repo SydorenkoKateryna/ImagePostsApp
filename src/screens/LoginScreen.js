@@ -12,6 +12,7 @@ import {
   KeyboardAvoidingView,
   Platform,
 } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 import Input from "../components/Input";
 import Button from "../components/Button";
 import InputButton from "../components/InputButton";
@@ -27,6 +28,8 @@ const LoginScreen = () => {
     text,
     textUnderline,
   } = styles;
+
+  const navigation = useNavigation();
 
   const [isPasswordHide, setIsPasswordHide] = useState(true);
   const [isFocused, setIsFocused] = useState({
@@ -45,6 +48,8 @@ const LoginScreen = () => {
 
     setEmail("");
     setPassword("");
+
+    navigation.navigate("Home", { user: { email, password } });
   };
 
   const togglePasswordHide = () => {
@@ -123,7 +128,12 @@ const LoginScreen = () => {
 
                   <View style={textWrapper}>
                     <Text style={text}>Немає акаунту?</Text>
-                    <Text style={[text, textUnderline]}>Зареєструватися</Text>
+                    <Text
+                      style={[text, textUnderline]}
+                      onPress={() => navigation.navigate("Registration")}
+                    >
+                      Зареєструватися
+                    </Text>
                   </View>
                 </View>
               )}

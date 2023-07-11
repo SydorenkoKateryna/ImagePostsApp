@@ -14,12 +14,13 @@ import {
   TouchableOpacity,
   Image,
 } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 import Input from "../components/Input";
 import Button from "../components/Button";
 import InputButton from "../components/InputButton";
 import { useKeyboardVisible } from "../hooks/Keyboard";
-import { Feather } from "@expo/vector-icons";
 import * as DocumentPicker from "expo-document-picker";
+import ProfileImgSvg from "../../assets/svg/ProfileImgSvg";
 
 const RegistrationScreen = () => {
   const {
@@ -34,7 +35,11 @@ const RegistrationScreen = () => {
     textWrapper,
     text,
     textUnderline,
+    addProfileImgBtn,
+    deleteProfileImgBtn,
   } = styles;
+
+  const navigation = useNavigation();
 
   const [isPasswordHide, setIsPasswordHide] = useState(true);
   const [isFocused, setIsFocused] = useState({
@@ -58,6 +63,8 @@ const RegistrationScreen = () => {
     setEmail("");
     setPassword("");
     setImage(null);
+
+    navigation.navigate("Home", { user: { login, email, password } });
   };
 
   const handleAddImage = async () => {
@@ -115,17 +122,14 @@ const RegistrationScreen = () => {
               {image && <Image style={imageStyles} source={image} />}
               {image ? (
                 <TouchableOpacity
-                  style={[
-                    imageButton,
-                    { backgroundColor: "#ffffff", borderRadius: 50 },
-                  ]}
+                  style={[imageButton, { transform: [{ rotate: "45deg" }] }]}
                   onPress={handleDeleteImage}
                 >
-                  <Feather name="x-circle" size={25} color="#BDBDBD" />
+                  <ProfileImgSvg style={deleteProfileImgBtn} />
                 </TouchableOpacity>
               ) : (
                 <TouchableOpacity style={imageButton} onPress={handleAddImage}>
-                  <Feather name="plus-circle" size={25} color="#FF6C00" />
+                  <ProfileImgSvg style={addProfileImgBtn} />
                 </TouchableOpacity>
               )}
             </View>
@@ -183,7 +187,12 @@ const RegistrationScreen = () => {
 
                     <View style={textWrapper}>
                       <Text style={text}>Вже є акаунт?</Text>
-                      <Text style={[text, textUnderline]}>Увійти</Text>
+                      <Text
+                        style={[text, textUnderline]}
+                        onPress={() => navigation.navigate("Login")}
+                      >
+                        Увійти
+                      </Text>
                     </View>
                   </View>
                 )}
@@ -260,6 +269,16 @@ const styles = StyleSheet.create({
   textUnderline: {
     marginLeft: 5,
     textDecorationLine: "underline",
+  },
+  addProfileImgBtn: {
+    fill: "#FF6C00",
+    stroke: "#FF6C00",
+    backgroundColor: "#ffffff",
+  },
+  deleteProfileImgBtn: {
+    fill: "#BDBDBD",
+    stroke: "#BDBDBD",
+    backgroundColor: "#ffffff",
   },
 });
 
