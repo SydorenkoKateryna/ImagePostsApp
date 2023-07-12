@@ -22,6 +22,7 @@ const Home = () => {
     <TouchableOpacity
       style={backBtn}
       onPress={() => navigation.navigate("Posts")}
+      // onPress={() => navigation.goBack()}
     >
       <ArrowLeftSvg style={{ stroke: "#212121" }} />
     </TouchableOpacity>

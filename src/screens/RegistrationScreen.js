@@ -52,6 +52,13 @@ const RegistrationScreen = () => {
   const [password, setPassword] = useState("");
   const [image, setImage] = useState(null);
 
+  const handleClearState = () => {
+    setLogin("");
+    setEmail("");
+    setPassword("");
+    setImage(null);
+  };
+
   const signIn = () => {
     if (!login || !email || !password) {
       return console.warn("Будь ласка заповніть всі поля!");
@@ -59,12 +66,9 @@ const RegistrationScreen = () => {
 
     console.log({ login, email, password, image });
 
-    setLogin("");
-    setEmail("");
-    setPassword("");
-    setImage(null);
-
     navigation.navigate("Home", { user: { login, email, password } });
+
+    handleClearState();
   };
 
   const handleAddImage = async () => {
@@ -183,7 +187,11 @@ const RegistrationScreen = () => {
 
                 {!useKeyboardVisible() && (
                   <View style={{ marginTop: 43 }}>
-                    <Button text={"Зареєстуватися"} onPress={signIn} />
+                    <Button
+                      text={"Зареєстуватися"}
+                      onPress={signIn}
+                      disabled={!login || !email || !password}
+                    />
 
                     <View style={textWrapper}>
                       <Text style={text}>Вже є акаунт?</Text>

@@ -14,3 +14,10 @@
 
 <a href="https://monosnap.com/file/bJL5CUyRnUd5QYCdvW1kKNEdPMazQk">Обробка подій, текстових інпутів, робота з клавіатурою. RegistrationScreen</a><br>
 <a href="https://monosnap.com/file/ImLx46KqjPCdY15kHz6vXAw6RkUUHf">Обробка подій, текстових інпутів, робота з клавіатурою. LoginScreen</a>
+
+## goit-react-native-hw-4
+
+<a href="https://monosnap.com/file/cMW6cXoZ3yNaRQRIZqM931JBS2ScO6">Розмітка та стилізація екрану PostsScreen</a><br>
+<a href="https://monosnap.com/file/j3nCwgzGVwoHzZxC9b9Aat4vuYkXPg">Розмітка та стилізація екрану CreatePostsScreen</a><br>
+<a href="https://monosnap.com/file/vSFuw0puITWsU2raznOT6fVGAqoz9f">Розмітка та стилізація екрану ProfileScreen</a><br>
+<a href="https://monosnap.com/file/AMis1jxsRYzpVFxGrlDMX9e1e570MC">Розмітка та стилізація екрану CommentsScreen</a>

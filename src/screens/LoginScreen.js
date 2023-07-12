@@ -39,6 +39,11 @@ const LoginScreen = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const handleClearState = () => {
+    setEmail("");
+    setPassword("");
+  };
+
   const signIn = () => {
     if (!email || !password) {
       return console.warn("Будь ласка заповніть всі поля!");
@@ -46,10 +51,9 @@ const LoginScreen = () => {
 
     console.log({ email, password });
 
-    setEmail("");
-    setPassword("");
-
     navigation.navigate("Home", { user: { email, password } });
+
+    handleClearState();
   };
 
   const togglePasswordHide = () => {
@@ -124,7 +128,11 @@ const LoginScreen = () => {
 
               {!useKeyboardVisible() && (
                 <View style={{ marginTop: 43 }}>
-                  <Button text={"Увійти"} onPress={signIn} />
+                  <Button
+                    text={"Увійти"}
+                    onPress={signIn}
+                    disabled={!email || !password}
+                  />
 
                   <View style={textWrapper}>
                     <Text style={text}>Немає акаунту?</Text>
