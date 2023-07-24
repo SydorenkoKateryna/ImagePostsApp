@@ -11,6 +11,10 @@ export const FAKEDATA = [
       country: "Ukraine",
       region: "Ivano-Frankivs'k Region",
     },
+    geolocation: {
+      latitude: 50.450001,
+      longitude: 30.523333,
+    },
   },
   {
     id: 2,
@@ -21,6 +25,10 @@ export const FAKEDATA = [
     location: {
       country: "Ukraine",
       region: "Some Another Region",
+    },
+    geolocation: {
+      latitude: 49.842957,
+      longitude: 24.031111,
     },
   },
   {
@@ -33,5 +41,9 @@ export const FAKEDATA = [
       country: "Italy",
       region: "Some Another Region",
     },
+    // geolocation: {
+    //   latitude: 0,
+    //   longitude: 0,
+    // },
   },
 ];

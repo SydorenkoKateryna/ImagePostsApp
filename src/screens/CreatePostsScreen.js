@@ -13,7 +13,8 @@ import {
   KeyboardAvoidingView,
   Platform,
 } from "react-native";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useIsFocused } from "@react-navigation/native";
+import CreatePostsComponent from "../components/CreatePostsComponent";
 import Button from "../components/Button";
 import { useKeyboardVisible } from "../hooks/Keyboard";
 import CameraSvg from "../../assets/svg/CameraSvg";
@@ -26,39 +27,50 @@ const CreatePostsScreen = () => {
     wrapper,
     imageWrapper,
     imageStyles,
-    cameraIconWrapper,
     locationIconWrapper,
     trashIconWrapper,
     text,
     formContainer,
     input,
     lastInput,
+    imageIconWrapper,
   } = styles;
 
   const navigation = useNavigation();
-
+  const isFocusedCamera = useIsFocused();
   const [isFocused, setIsFocused] = useState({
     title: false,
     password: false,
   });
-  const [title, setTitle] = useState("");
-  const [location, setLocation] = useState("");
   const [photo, setPhoto] = useState(null);
+  const [title, setTitle] = useState("");
+  const [location, setLocation] = useState(null);
+  const [geolocation, setGeolocation] = useState(null);
 
   const handleClearState = () => {
     setTitle("");
-    setLocation("");
+    setLocation(null);
     setPhoto(null);
+    setGeolocation(null);
   };
 
-  const handleSubmit = () => {
-    if (!photo || !title || !location) {
-      return console.warn("Будь ласка заповніть всі поля!");
-    }
+  const handleSubmit = async () => {
+    // if (!photo || !title || !location) {
+    //   return console.warn("Будь ласка заповніть всі поля!");
+    // }
+    console.log({
+      photo,
+      title,
+      location,
+      geolocation,
+    });
 
-    console.log({ photo, title, location });
-
-    navigation.navigate("Posts", { post: { photo, title, location } });
+    navigation.navigate("Posts", {
+      photo,
+      title,
+      location,
+      geolocation,
+    });
 
     handleClearState();
   };
@@ -85,20 +97,25 @@ const CreatePostsScreen = () => {
         />
         <View style={wrapper}>
           <View style={imageWrapper}>
-            <Image style={imageStyles} />
-
-            <TouchableOpacity
-              style={[
-                cameraIconWrapper,
-                photo
-                  ? { backgroundColor: "rgba(255, 255, 255, 0.3)" }
-                  : { backgroundColor: "#ffffff" },
-              ]}
-            >
-              <CameraSvg
-                style={photo ? { fill: "#ffffff" } : { fill: "#BDBDBD" }}
-              />
-            </TouchableOpacity>
+            {photo ? (
+              <View>
+                <Image style={imageStyles} source={{ uri: photo }} />
+                <TouchableOpacity
+                  onPress={() => setPhoto(null)}
+                  style={imageIconWrapper}
+                >
+                  <CameraSvg style={{ fill: "#ffffff" }} />
+                </TouchableOpacity>
+              </View>
+            ) : (
+              isFocusedCamera && (
+                <CreatePostsComponent
+                  setPhoto={setPhoto}
+                  setGeolocation={setGeolocation}
+                  setLocation={setLocation}
+                />
+              )
+            )}
           </View>
 
           <Text style={text}>
@@ -206,16 +223,6 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "100%",
   },
-  cameraIconWrapper: {
-    position: "absolute",
-    top: 92,
-    left: 142,
-    width: 60,
-    height: 60,
-    borderRadius: 50,
-    alignItems: "center",
-    justifyContent: "center",
-  },
   locationIconWrapper: {
     position: "absolute",
     top: 13,
@@ -262,6 +269,17 @@ const styles = StyleSheet.create({
     paddingLeft: 28,
     fontFamily: "Roboto_400Regular",
     fontSize: 16,
+  },
+  imageIconWrapper: {
+    position: "absolute",
+    top: 92,
+    left: 152,
+    width: 60,
+    height: 60,
+    borderRadius: 50,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "rgba(255, 255, 255, 0.3)",
   },
 });
 

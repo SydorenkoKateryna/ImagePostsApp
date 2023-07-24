@@ -19,6 +19,8 @@ const PostsScreen = () => {
       comments={item.comments}
       region={item.location.region}
       country={item.location.country}
+      latitude={item.geolocation?.latitude ?? null}
+      longitude={item.geolocation?.longitude ?? null}
     />
   );
 

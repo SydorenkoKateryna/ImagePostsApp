@@ -5,7 +5,16 @@ import MessageSvg from "../../assets/svg/MessageSvg";
 import ThumbsUpSvg from "../../assets/svg/ThumbsUpSvg";
 import MapPinSvg from "../../assets/svg/MapPinSvg";
 
-const ListItem = ({ image, title, comments, likes, region, country }) => {
+const ListItem = ({
+  image,
+  title,
+  comments,
+  likes,
+  region,
+  country,
+  latitude,
+  longitude,
+}) => {
   const {
     item,
     imageWrapper,
@@ -60,7 +69,7 @@ const ListItem = ({ image, title, comments, likes, region, country }) => {
 
         <View style={mapPinWrapper}>
           <TouchableOpacity
-            onPress={() => navigation.navigate("Map")}
+            onPress={() => navigation.navigate("Map", { latitude, longitude })}
             style={{ marginRight: 4 }}
           >
             <MapPinSvg style={{ stroke: "#BDBDBD" }} />

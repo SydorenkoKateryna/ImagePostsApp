@@ -21,3 +21,8 @@
 <a href="https://monosnap.com/file/j3nCwgzGVwoHzZxC9b9Aat4vuYkXPg">Розмітка та стилізація екрану CreatePostsScreen</a><br>
 <a href="https://monosnap.com/file/vSFuw0puITWsU2raznOT6fVGAqoz9f">Розмітка та стилізація екрану ProfileScreen</a><br>
 <a href="https://monosnap.com/file/AMis1jxsRYzpVFxGrlDMX9e1e570MC">Розмітка та стилізація екрану CommentsScreen</a>
+
+## goit-react-native-hw-5
+
+<a href="https://monosnap.com/file/O32Zv4dzWAMjlYog0EUmVE1nUwllzX">Підключення камери та визначення геолокації на екрані CreatePostsScreen</a><br>
+<a href="https://monosnap.com/file/RYFzcvEU5UBDRl8BfxCULSjxoIAHjB">Мапа з маркером, де була зроблена фотографія, на екрані MapScreen</a>
